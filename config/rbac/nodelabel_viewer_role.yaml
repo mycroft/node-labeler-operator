@@ -1,0 +1,27 @@
+# permissions for end users to view nodelabels.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: nodelabel-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: node-labeler-operator
+    app.kubernetes.io/part-of: node-labeler-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: nodelabel-viewer-role
+rules:
+- apiGroups:
+  - infra.mkz.me
+  resources:
+  - nodelabels
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - infra.mkz.me
+  resources:
+  - nodelabels/status
+  verbs:
+  - get

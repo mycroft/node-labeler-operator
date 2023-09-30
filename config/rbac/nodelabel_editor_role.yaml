@@ -1,0 +1,31 @@
+# permissions for end users to edit nodelabels.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: nodelabel-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: node-labeler-operator
+    app.kubernetes.io/part-of: node-labeler-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: nodelabel-editor-role
+rules:
+- apiGroups:
+  - infra.mkz.me
+  resources:
+  - nodelabels
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - infra.mkz.me
+  resources:
+  - nodelabels/status
+  verbs:
+  - get

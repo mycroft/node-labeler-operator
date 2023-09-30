@@ -1,0 +1,43 @@
+apiVersion: infra.mkz.me/v1alpha1
+kind: NodeLabel
+metadata:
+  labels:
+    app.kubernetes.io/name: nodelabel
+    app.kubernetes.io/instance: nodelabel-sample
+    app.kubernetes.io/part-of: node-labeler-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: node-labeler-operator
+  name: nodelabel-sample
+spec:
+  nodeSelectorTerms:
+  - matchExpressions:
+    - key: kubernetes.io/hostname
+      operator: In
+      values:
+      - star-train.mkz.me
+      - tokimeki.mkz.me
+  labels:
+    mkz.me/testaroo: "foo"
+---
+apiVersion: infra.mkz.me/v1alpha1
+kind: NodeLabel
+metadata:
+  labels:
+    app.kubernetes.io/name: nodelabel
+    app.kubernetes.io/instance: nodelabel-sample
+    app.kubernetes.io/part-of: node-labeler-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: node-labeler-operator
+  name: nodelabel-sample2
+spec:
+  nodeSelectorTerms:
+  - matchExpressions:
+    - key: kubernetes.io/hostname
+      operator: In
+      values:
+      - polygon-wave.mkz.me
+      - tokimeki.mkz.me
+  taints:
+  - key: node.kubernetes.io/unschedulable
+    effect: PreferNoSchedule
+---
